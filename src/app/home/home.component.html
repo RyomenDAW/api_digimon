@@ -1,0 +1,81 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1737724597" alt="Logo Elden Ring" width="100" height="100">
+        Elden Ring Wiki
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#jefes">Jefes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#exploracion">Exploración</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#builds">Builds</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+<!-- Carrusel -->
+<div id="eldenRingCarousel" class="carousel slide mt-5 pt-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let boss of bosses; let i = index" [class.active]="i === 0" class="carousel-item">
+        <img [src]="boss.image" class="d-block w-100" [alt]="boss.name">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#eldenRingCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#eldenRingCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  
+  <div class="container mt-5">
+    <div class="text-center">
+      <h1>Bienvenido a la Wiki de Elden Ring</h1>
+      <p>Explora el vasto mundo de Elden Ring, descubre sus secretos, jefes y construcciones.</p>
+    </div>
+  
+    <div class="row mt-5">
+      <div class="col-md-4" id="jefes">
+        <div class="card shadow-lg">
+          <img src="assets/boss.jpg" class="card-img-top" alt="Jefes">
+          <div class="card-body">
+            <h5 class="card-title">Jefes Legendarios</h5>
+            <p class="card-text">Conoce a los enemigos más desafiantes y cómo derrotarlos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" id="exploracion">
+        <div class="card shadow-lg">
+          <img src="assets/map.jpg" class="card-img-top" alt="Mapa">
+          <div class="card-body">
+            <h5 class="card-title">Exploración</h5>
+            <p class="card-text">Descubre localizaciones ocultas y secretos en el mundo abierto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" id="builds">
+        <div class="card shadow-lg">
+          <img src="assets/builds.jpg" class="card-img-top" alt="Builds">
+          <div class="card-body">
+            <h5 class="card-title">Builds y Estrategias</h5>
+            <p class="card-text">Crea tu guerrero perfecto con guías de armas y habilidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
