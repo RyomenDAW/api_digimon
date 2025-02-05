@@ -34,7 +34,7 @@
 <div id="eldenRingCarousel" class="carousel slide mt-5 pt-5" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div *ngFor="let boss of bosses; let i = index" [class.active]="i === 0" class="carousel-item">
-        <img [src]="boss.image" class="d-block w-100" [alt]="boss.name">
+        <img [src]="boss.image" class="d-block w-70" [alt]="boss.name">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#eldenRingCarousel" data-bs-slide="prev">
@@ -54,7 +54,7 @@
     <div class="row mt-5">
       <div class="col-md-4" id="jefes">
         <div class="card shadow-lg">
-          <img src="assets/boss.jpg" class="card-img-top" alt="Jefes">
+          <img src="../../assets/mohg.jpg" alt="Jefes MOHG">
           <div class="card-body">
             <h5 class="card-title">Jefes Legendarios</h5>
             <p class="card-text">Conoce a los enemigos más desafiantes y cómo derrotarlos.</p>

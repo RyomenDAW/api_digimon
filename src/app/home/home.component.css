@@ -10,4 +10,10 @@
   .card:hover {
     transform: scale(1.05);
   }
+  #eldenRingCarousel .carousel-item img {
+    width: 70%; /* Ajusta este valor según lo que necesites */
+    margin: 0 auto; /* Centra la imagen */
+    margin-top: 3%;
+  }
+
   
