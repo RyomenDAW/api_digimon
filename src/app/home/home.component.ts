@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BossService } from '../boss.service';
+import { DigimonService } from '../digimon.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';  // Agrega esta importación
 
@@ -11,13 +11,13 @@ import { HttpClientModule } from '@angular/common/http';  // Agrega esta importa
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  bosses: any[] = [];
+  digimons: any[] = [];
 
-  constructor(private bossService: BossService) { }
+  constructor(private digimonService: DigimonService) { }
 
   ngOnInit(): void {
-    this.bossService.getBosses().subscribe(response => {
-      this.bosses = response.data;
+    this.digimonService.getDigimons().subscribe(response => {
+      this.digimons = response.data;
     });
   }
 }
