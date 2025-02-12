@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';  // Asegúrate de importar HttpClientModule
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './digimon.service';
+
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HomeComponent],  // Asegúrate de incluirlo aquí],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 
+export class AppComponent implements OnInit {
+  data: any;
 
+  constructor(private apiService: ApiService) {}
 
-export class AppComponent {
-  title = 'angApp_v19';
+  ngOnInit() {
+    this.apiService.getData().subscribe(response => {
+      this.data = response;
+    });
+  }
 }

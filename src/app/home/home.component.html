@@ -31,10 +31,12 @@
 <!-- Carrusel -->
 <div id="digimonCarousel" class="carousel slide mt-5 pt-5" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div *ngFor="let digimon of digimons; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
-      <h3 class="text-center">{{ digimon.name }}</h3>
-      <img [src]="digimon.images[0]?.href" class="d-block w-50 mx-auto" [alt]="digimon.name">
-    </div>
+    @for (digimon of digimons; track digimon) {
+      <div class="carousel-item" @if (digimons[0] === digimon) class="active">
+        <h3 class="text-center">{{ digimon.name }}</h3>
+        <img *ngIf="digimon.images.length > 0" [src]="digimon.images[0].href" class="d-block w-50 mx-auto" [alt]="digimon.name">
+      </div>
+    }
   </div>
 
   <!-- Botón anterior -->
@@ -50,9 +52,6 @@
   </button>
 </div>
 
-
-
-
 <!-- Contenido Principal -->
 <div class="container mt-5">
   <div class="text-center">
@@ -63,7 +62,7 @@
   <div class="row mt-5">
     <div class="col-md-4" id="digimon">
       <div class="card shadow-lg">
-        <img src="https://digimon.net/images/lineup/agnimon.png" alt="Digimon">
+        <img *ngIf="legendaryDigimon?.images?.length > 0" [src]="legendaryDigimon.images[0].href" alt="Digimon Legendario">
         <div class="card-body">
           <h5 class="card-title">Digimon Legendarios</h5>
           <p class="card-text">Conoce a los Digimon más poderosos y sus evoluciones épicas.</p>
@@ -72,7 +71,7 @@
     </div>
     <div class="col-md-4" id="aventuras">
       <div class="card shadow-lg">
-        <img src="https://digimon.net/images/top/main_visual.jpg" class="card-img-top" alt="Aventuras">
+        <img *ngIf="adventureDigimon?.images?.length > 0" [src]="adventureDigimon.images[0].href" class="card-img-top" alt="Aventuras">
         <div class="card-body">
           <h5 class="card-title">Aventuras Digitales</h5>
           <p class="card-text">Descubre las historias emocionantes del mundo digital.</p>
@@ -81,7 +80,7 @@
     </div>
     <div class="col-md-4" id="entrenadores">
       <div class="card shadow-lg">
-        <img src="https://digimon.net/images/characters/tai.png" class="card-img-top" alt="Entrenadores">
+        <img *ngIf="trainerDigimon?.images?.length > 0" [src]="trainerDigimon.images[0].href" class="card-img-top" alt="Entrenadores">
         <div class="card-body">
           <h5 class="card-title">Entrenadores Icónicos</h5>
           <p class="card-text">Conoce a los entrenadores que lideraron a sus Digimon hacia la gloria.</p>
