@@ -1,55 +1,106 @@
-<div class="container">
-    <div class="card mt-4">
-      <div class="card-body">
-        <h2 class="text-center">📩 Contacto</h2>
-        
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class="mb-3">
-            <label for="name" class="form-label">Nombre:</label>
-            <input type="text" id="name" class="form-control" formControlName="name">
-            <div *ngIf="contactForm.get('name')?.errors && contactForm.get('name')?.touched" class="invalid-feedback">
-              <div *ngIf="contactForm.get('name')?.hasError('required')">El nombre es obligatorio.</div>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 border">
+  <div class="container" style="margin-bottom: 0px; border: 1px solid white; padding: 15px; border-radius: 10px;">
+    <!-- Logo de Digimon -->
+    <a class="navbar-brand ms-auto" href="#">
+      <img src="../../assets/veemon.png" alt="Logo Veemon" width="100" height="100">
+      Digimon API | 2º DAW
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" href="#home">🏠 Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" href="#digimon">🔍 Digimones</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" href="#favoritos">⭐ Favoritos</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" routerLink="/contacto">📩 Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary mx-2" href="#login">🔑 Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container d-flex flex-column align-items-center" style="min-height: 80vh;">
+  <div class="card shadow-lg p-4 border-0 mb-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+    <div class="card-body">
+      <h2 class="text-center mb-4">
+        <i class="bi bi-envelope-paper-fill text-primary"></i> Contacto
+      </h2>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Nombre:</label>
+          <input type="text" id="name" class="form-control" formControlName="name" placeholder="Ej: Juan Pérez">
+          <div *ngIf="contactForm.get('name')?.errors && contactForm.get('name')?.touched" class="text-danger mt-1">
+            <small *ngIf="contactForm.get('name')?.hasError('required')">⚠️ El nombre es obligatorio.</small>
           </div>
-  
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico:</label>
-            <input type="email" id="email" class="form-control" formControlName="email">
-            <div *ngIf="contactForm.get('email')?.errors && contactForm.get('email')?.touched" class="invalid-feedback">
-              <div *ngIf="contactForm.get('email')?.hasError('required')">El correo es obligatorio.</div>
-              <div *ngIf="contactForm.get('email')?.hasError('email')">Formato de correo inválido.</div>
-            </div>
+        </div>
+
+        <!-- Correo -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Correo electrónico:</label>
+          <input type="email" id="email" class="form-control" formControlName="email" placeholder="ejemplo@gmail.com">
+          <div *ngIf="contactForm.get('email')?.errors && contactForm.get('email')?.touched" class="text-danger mt-1">
+            <small *ngIf="contactForm.get('email')?.hasError('required')">⚠️ El correo es obligatorio.</small>
+            <small *ngIf="contactForm.get('email')?.hasError('email')">⚠️ Formato de correo inválido.</small>
           </div>
-  
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña:</label>
-            <input type="password" id="password" class="form-control" formControlName="password">
-            <div *ngIf="contactForm.get('password')?.errors && contactForm.get('password')?.touched" class="invalid-feedback">
-              <div *ngIf="contactForm.get('password')?.hasError('required')">La contraseña es obligatoria.</div>
-              <div *ngIf="contactForm.get('password')?.hasError('minlength')">Debe tener al menos 6 caracteres.</div>
-              <div *ngIf="contactForm.get('password')?.hasError('pattern')">
-                Debe contener al menos una mayúscula, una minúscula, un número y un caracter especial.
-              </div>
-            </div>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="mb-3">
+          <label for="message" class="form-label fw-bold">Mensaje:</label>
+          <textarea id="message" class="form-control" formControlName="message" rows="4"
+            placeholder="Escribe tu mensaje aquí..."></textarea>
+          <div *ngIf="contactForm.get('message')?.errors && contactForm.get('message')?.touched"
+            class="text-danger mt-1">
+            <small *ngIf="contactForm.get('message')?.hasError('required')">⚠️ El mensaje es obligatorio.</small>
           </div>
-  
-          <div class="mb-3">
-            <label for="message" class="form-label">Mensaje:</label>
-            <textarea id="message" class="form-control" formControlName="message"></textarea>
-            <div *ngIf="contactForm.get('message')?.errors && contactForm.get('message')?.touched" class="invalid-feedback">
-              <div *ngIf="contactForm.get('message')?.hasError('required')">El mensaje es obligatorio.</div>
-            </div>
-          </div>
-  
-          <button type="submit" class="btn btn-primary w-100" [disabled]="contactForm.invalid || isLoading">
-            {{ isLoading ? 'Enviando...' : 'Enviar' }}
-          </button>
-        </form>
-  
-        <!-- Mensajes de éxito y error -->
-        <div *ngIf="formSubmitted" class="alert alert-success mt-3">Tu mensaje se ha enviado correctamente.</div>
-        <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+        </div>
+
+        <!-- Botón de Enviar -->
+        <button type="submit" class="btn btn-primary w-100 fw-bold py-2" [disabled]="contactForm.invalid || isLoading">
+          <i class="bi bi-send"></i> {{ isLoading ? 'Enviando...' : 'Enviar' }}
+        </button>
+      </form>
+
+      <!-- Mensajes de éxito y error -->
+      <div *ngIf="formSubmitted" class="alert alert-success mt-3">
+        ✅ Tu mensaje se ha enviado correctamente.
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        ❌ {{ errorMessage }}
       </div>
     </div>
   </div>
-  
+
+  <!-- 🔹 SECCIÓN MAPA INTERACTIVO (IFRAME GOOGLE MAPS) -->
+  <div class="mt-4" style="width: 600px;">
+    <h5 class="text-center">📍 Nos encontramos aquí:</h5>
+    <iframe src="https://www.google.com/maps?q=Sevilla,España&output=embed" width="100%" height="300"
+      style="border: 0; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.2);" loading="lazy" allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- 🔹 SECCIÓN COPYRIGHT Y POLÍTICAS -->
+  <div class="text-center mt-4" style="font-size: 14px; color: gray;">
+    <p>© 2024 Digimon API | Todos los derechos reservados.</p>
+    <a href="/politica-privacidad" class="text-decoration-none">Política de privacidad</a> •
+    <a href="/terminos-condiciones" class="text-decoration-none">Términos y condiciones</a> •
+    <a href="/cookies" class="text-decoration-none">Política de cookies</a>
+  </div>
+</div>

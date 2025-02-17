@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 RUN npm install -g @angular/cli
+RUN npm install @emailjs/browser
 
 RUN npm install
 
