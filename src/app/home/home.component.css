@@ -1,19 +1,242 @@
-.carousel img {
-    max-height: 500px;
-    object-fit: cover;
-  }
-  
-  .card {
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  #eldenRingCarousel .carousel-item img {
-    width: 70%; /* Ajusta este valor según lo que necesites */
-    margin: 0 auto; /* Centra la imagen */
-    margin-top: 3%;
-  }
+.navbar {
+  font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
+  text-transform: uppercase; /* Opcional: convierte texto en mayúsculas */
+  font-weight: 700; /* Hace que el texto sea más grueso */
+  letter-spacing: 1px;
+}
 
-  
+.navbar-brand {
+  font-size: 20px; /* Ajusta el tamaño del texto del logo */
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+  font-size: 16px; /* Ajusta el tamaño de los links */
+  font-weight: 600;
+  color: whitesmoke;
+  font-style:italic;
+}
+
+
+
+/* Contenedor Principal */
+.digimon-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border: 2px solid #ddd;
+  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
+
+}
+
+/* Contenedor de la información */
+.digimon-info {
+  display: flex;
+  flex-direction: column; /* Organiza los datos en columna */
+  gap: 5px; /* Espaciado entre líneas */
+  font-size: 16px;
+  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
+  letter-spacing: 1px;
+}
+
+/* Título */
+.title {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
+
+}
+
+/* Input y Botón */
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+.input-field {
+  padding: 10px;
+  outline: none;
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+  margin-left: 10px;
+  border: 2px solid #007bff; /* Azul más sutil */
+  border-radius: 8px; /* Bordes más suaves */
+}
+
+.input-field:focus {
+  border-color: #0056b3;
+}
+
+/* Botón estilizado */
+.search-button {
+  padding: 10px 15px;
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+}
+
+.search-button:hover {
+  background: linear-gradient(to right, #0056b3, #004494);
+  transform: scale(1.08);
+}
+
+/* Caja de resultados */
+.result-box {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center; /* Alinear verticalmente */
+  gap: 20px; /* Espacio entre la imagen y la información */
+}
+
+/* Habilidades */
+.skills-box {
+  margin-top: 15px;
+}
+
+.skills-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-box li {
+  background: #e3eaf5;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Imagen */
+.image-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex-shrink: 0; /* Evita que la imagen se reduzca */
+
+}
+
+.image-box img {
+  width: 200px; /* Tamaño fijo de la imagen */
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #007bff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.image-box img:hover {
+  transform: scale(1.05);
+}
+
+
+/* ============================================== */
+
+.featured-container {
+  text-align: center;
+  margin-top: 30px;
+  /* border: 2px solid aqua; */
+}
+
+.featured-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
+
+}
+
+.featured-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.featured-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  width: 250px;
+  border: 1px solid black;
+}
+
+.featured-card:hover {
+  transform: scale(1.05);
+}
+
+.featured-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.featured-card p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
+
+}
+
+
+/* ============================ */
+.featured-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.featured-buttons button {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.featured-buttons button:hover {
+  transform: scale(1.1);
+}
+
+.featured-buttons button:first-child {
+  background: #007bff;
+  color: white;
+}
+
+.featured-buttons button:last-child {
+  background: #dc3545;
+  color: white;
+}

@@ -1,12 +1,13 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 border">
+  <div class="container" style="margin-bottom: 0px; border: 2px solid white; padding: 15px; border-radius: 10px;">
     <!-- Logo de Digimon -->
     <a class="navbar-brand ms-auto" href="#">
       <img src="../../assets/veemon.png" alt="Logo Veemon" width="100" height="100">
       Digimon API | 2º DAW
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -28,64 +29,57 @@
   </div>
 </nav>
 
-<!-- Carrusel -->
-<div id="digimonCarousel" class="carousel slide mt-5 pt-5" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    @for (digimon of digimons; track digimon) {
-      <div class="carousel-item" @if (digimons[0] === digimon) class="active">
-        <h3 class="text-center">{{ digimon.name }}</h3>
-        <img *ngIf="digimon.images.length > 0" [src]="digimon.images[0].href" class="d-block w-50 mx-auto" [alt]="digimon.name">
+
+
+<div class="featured-container">
+  <h2 class="featured-title">Digimones Favoritos</h2>
+
+
+    <!-- Botones Shuffle y Reset -->
+    <div class="featured-buttons">
+      <button (click)="shuffleDigimons()">🔄 Shuffle</button>
+      <button (click)="resetDigimons()">🔙 Reset</button>
+    </div>
+
+  <div class="featured-grid">
+    <!-- Input oculto para reutilizarlo -->
+    <input type="text" #tempInput hidden>
+
+    @for (digimon of featuredDigimons; track digimon.id) {
+      <div class="featured-card" (click)="tempInput.value = digimon.id.toString(); getDigimon(tempInput)">
+        <img [src]="digimon.image" alt="{{ digimon.name }}">
+        <p>{{ digimon.name }}</p>
       </div>
     }
   </div>
-
-  <!-- Botón anterior -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#digimonCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-
-  <!-- Botón siguiente -->
-  <button class="carousel-control-next" type="button" data-bs-target="#digimonCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Siguiente</span>
-  </button>
 </div>
 
-<!-- Contenido Principal -->
-<div class="container mt-5">
-  <div class="text-center">
-    <h1>Bienvenido a la Digimon API</h1>
-    <p>Explora el mundo digital, descubre a los Digimon, sus aventuras y a los entrenadores legendarios.</p>
-  </div>
 
-  <div class="row mt-5">
-    <div class="col-md-4" id="digimon">
-      <div class="card shadow-lg">
-        <img *ngIf="legendaryDigimon?.images?.length > 0" [src]="legendaryDigimon.images[0].href" alt="Digimon Legendario">
-        <div class="card-body">
-          <h5 class="card-title">Digimon Legendarios</h5>
-          <p class="card-text">Conoce a los Digimon más poderosos y sus evoluciones épicas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4" id="aventuras">
-      <div class="card shadow-lg">
-        <img *ngIf="adventureDigimon?.images?.length > 0" [src]="adventureDigimon.images[0].href" class="card-img-top" alt="Aventuras">
-        <div class="card-body">
-          <h5 class="card-title">Aventuras Digitales</h5>
-          <p class="card-text">Descubre las historias emocionantes del mundo digital.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4" id="entrenadores">
-      <div class="card shadow-lg">
-        <img *ngIf="trainerDigimon?.images?.length > 0" [src]="trainerDigimon.images[0].href" class="card-img-top" alt="Entrenadores">
-        <div class="card-body">
-          <h5 class="card-title">Entrenadores Icónicos</h5>
-          <p class="card-text">Conoce a los entrenadores que lideraron a sus Digimon hacia la gloria.</p>
-        </div>
-      </div>
-    </div>
+
+
+<!-- Contenedor con borde -->
+<div class="container digimon-container">
+  <h2 class="title">Buscar Digimon</h2>
+
+  <label for="digimon-id" class="label">ID del Digimon: </label>
+  <input id="digimon-id" type="number" min="1" #digimonIdInput class="input-field">
+  <button (click)="getDigimon(digimonIdInput)" class="search-button">Buscar</button>
+</div>
+
+<div class="result-box">
+  <div class="image-box">
+    <img [src]="digimonImage" alt="{{ digimonName }}">
+  </div>
+  
+  <div class="digimon-info">
+    <p><strong>Nombre:</strong> {{ digimonName }}</p>
+    <p><strong>ID:</strong> {{ digimonId }}</p>
+    <p><strong>Nivel:</strong> {{ digimonLevel }}</p>
+    <p><strong>Tipo:</strong> {{ digimonType }}</p>
+    <p><strong>Atributo:</strong> {{ digimonAttribute }}</p>
+    <p><strong>Fecha de Lanzamiento:</strong> {{ digimonReleaseDate }}</p>
+    <p><strong>Habilidades:</strong> {{ digimonSkills.join(', ') }}</p>
   </div>
 </div>
+
+
