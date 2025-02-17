@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DigimonService } from '../digimon.service';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router'; // IMPORTANTE
-const BASE_URL = 'https://digi-api.com'; // URL base de la API
-
-
+const BASE_URL = 'https://digi-api.com/api/v1/digimon'; // URL base de la API
 
 @Component({
   selector: 'app-home',
@@ -13,13 +10,7 @@ const BASE_URL = 'https://digi-api.com'; // URL base de la API
   styleUrls: ['./home.component.css'],
   imports: [RouterModule] // 
 })
-
-
-
 export class HomeComponent {
-
-
-  digimonId: number = 1; // ID por defecto
   digimonName: string = 'Agumon'; // Nombre por defecto
   digimonImage: string = ''; // URL de la imagen del Digimon
   digimonLevel: string = 'Desconocido';
@@ -27,46 +18,62 @@ export class HomeComponent {
   digimonAttribute: string = 'Desconocido';
   digimonReleaseDate: string = 'Desconocido';
   digimonSkills: string[] = [];
-  originalDigimonIds: number[] = [32, 33, 140, 202]; // Digimon originales
-  featuredDigimons: { id: number; name: string; image: string }[] = [];
+  
+  // Digimones originales ahora por nombre
+  originalDigimonNames: string[] = ["Skull Greymon", "Garurumon", "Meramon", "War Greymon"];
+  featuredDigimons: { name: string; image: string }[] = [];
 
   constructor(private http: HttpClient) {
-    this.loadFeaturedDigimons(this.originalDigimonIds);
+    this.loadFeaturedDigimons(this.originalDigimonNames);
   }
 
-  loadFeaturedDigimons(ids: number[]) {
+  // ✅ CARGAR DIGIMONES DESTACADOS POR NOMBRE (mínimos cambios)
+  loadFeaturedDigimons(names: string[]) {
     this.featuredDigimons = []; // Limpiar antes de cargar
-    ids.forEach(id => {
-      this.http.get<any>(`https://digi-api.com/api/v1/digimon/${id}`)
+    names.forEach(name => {
+      this.http.get<any>(`${BASE_URL}/${name}`) // Ahora busca por nombre
         .subscribe(response => {
           this.featuredDigimons.push({
-            id: id,
             name: response.name,
             image: response.images?.[0]?.href || ''
           });
+        }, error => {
+          console.error(`Error obteniendo el Digimon ${name}:`, error);
         });
     });
   }
 
-  shuffleDigimons() {
-    const randomIds = Array.from({ length: 4 }, () => Math.floor(Math.random() * 300) + 1);
-    this.loadFeaturedDigimons(randomIds);
-  }
+// ✅ SHUFFLE DIGIMONES - Ahora selecciona Digimon aleatorios desde la API
+shuffleDigimons() {
+  const randomIds = Array.from({ length: 4 }, () => Math.floor(Math.random() * 300) + 1); // 🔥 Genera 200 IDs aleatorios
+  this.featuredDigimons = []; // 🔄 Limpia la lista antes de actualizar
 
-  resetDigimons() {
-    this.loadFeaturedDigimons(this.originalDigimonIds);
-  }
-
-  getDigimon(digimonIdInput: HTMLInputElement) {
-    const id = Number(digimonIdInput.value);
-    if (id <= 0 || isNaN(id)) return; // Evitamos IDs inválidos, is Not a Number es NAN.
-
-    this.digimonId = id; // Actualizamos el número del Digimon en pantalla
-
+  randomIds.forEach(id => {
     this.http.get<any>(`https://digi-api.com/api/v1/digimon/${id}`)
+      .subscribe(response => {
+        this.featuredDigimons.push({
+          name: response.name,
+          image: response.images?.[0]?.href || ''
+        });
+      }, error => {
+        console.error(`Error obteniendo el Digimon con ID ${id}:`, error);
+      });
+  });
+}
 
 
 
+  // ✅ RESET DIGIMONES (ahora carga por nombre en vez de ID)
+  resetDigimons() {
+    this.loadFeaturedDigimons(this.originalDigimonNames);
+  }
+
+  // ✅ BUSCAR DIGIMON POR NOMBRE (mínimo cambio)
+  getDigimon(digimonNameInput: HTMLInputElement) {
+    const name = digimonNameInput.value.trim();
+    if (!name) return; // Evitamos búsquedas vacías
+
+    this.http.get<any>(`${BASE_URL}/${name}`) // Busca por nombre
       .subscribe(response => {
         console.log(response); // ✅ Verificamos la respuesta en consola
         // Extraer información básica
@@ -76,10 +83,7 @@ export class HomeComponent {
         this.digimonType = response.types?.[0]?.type || 'Desconocido';
         this.digimonAttribute = response.attributes?.[0]?.attribute || 'Desconocido';
         this.digimonReleaseDate = response.releaseDate || 'Desconocido';
-
-        // Extraer hasta 3 habilidades si existen
         this.digimonSkills = response.skills?.slice(0, 3).map((skill: { skill: string }) => skill.skill) || ['No disponibles'];
-
       }, error => {
         console.error('Error obteniendo el Digimon:', error);
 
@@ -92,7 +96,5 @@ export class HomeComponent {
         this.digimonReleaseDate = 'Desconocido';
         this.digimonSkills = ['No disponibles'];
       });
-  }}
-
-
- 
+  }
+}

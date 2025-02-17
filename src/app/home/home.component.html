@@ -45,18 +45,19 @@
       <button (click)="resetDigimons()">🔙 Reset</button>
     </div>
 
-  <div class="featured-grid">
-    <!-- Input oculto para reutilizarlo -->
-    <input type="text" #tempInput hidden>
-
-    @for (digimon of featuredDigimons; track digimon.id) {
-      <div class="featured-card" (click)="tempInput.value = digimon.id.toString(); getDigimon(tempInput)">
-        <img [src]="digimon.image" alt="{{ digimon.name }}">
-        <p>{{ digimon.name }}</p>
-      </div>
-    }
-  </div>
-</div>
+    <div class="featured-grid">
+      <!-- Input oculto para reutilizarlo -->
+      <input type="text" #tempInput hidden>
+    
+      @for (digimon of featuredDigimons; track digimon.name) { 
+        <div class="featured-card" (click)="tempInput.value = digimon.name; getDigimon(tempInput)">
+          <img [src]="digimon.image" alt="{{ digimon.name }}">
+          <p>{{ digimon.name }}</p>
+        </div>
+      }
+    </div>
+    </div>
+    
 
 
 
@@ -65,9 +66,9 @@
 <div class="container digimon-container">
   <h2 class="title">Buscar Digimon</h2>
 
-  <label for="digimon-id" class="label">ID del Digimon: </label>
-  <input id="digimon-id" type="number" min="1" #digimonIdInput class="input-field">
-  <button (click)="getDigimon(digimonIdInput)" class="search-button">Buscar</button>
+  <label for="digimonName" class="label">Nombre del Digimon: </label>
+  <input id="digimonName" type="text"  #digimonNameInput class="input-field">
+  <button (click)="getDigimon(digimonNameInput)" class="search-button">Buscar</button>
 </div>
 
 <div class="result-box">
@@ -77,7 +78,6 @@
   
   <div class="digimon-info">
     <p><strong>Nombre:</strong> {{ digimonName }}</p>
-    <p><strong>ID:</strong> {{ digimonId }}</p>
     <p><strong>Nivel:</strong> {{ digimonLevel }}</p>
     <p><strong>Tipo:</strong> {{ digimonType }}</p>
     <p><strong>Atributo:</strong> {{ digimonAttribute }}</p>
