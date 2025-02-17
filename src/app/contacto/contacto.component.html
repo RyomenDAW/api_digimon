@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h2 class="text-center">📩 Contacto</h2>
+        
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+            <div *ngIf="contactForm.get('name')?.errors && contactForm.get('name')?.touched" class="invalid-feedback">
+              <div *ngIf="contactForm.get('name')?.hasError('required')">El nombre es obligatorio.</div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+            <div *ngIf="contactForm.get('email')?.errors && contactForm.get('email')?.touched" class="invalid-feedback">
+              <div *ngIf="contactForm.get('email')?.hasError('required')">El correo es obligatorio.</div>
+              <div *ngIf="contactForm.get('email')?.hasError('email')">Formato de correo inválido.</div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" id="password" class="form-control" formControlName="password">
+            <div *ngIf="contactForm.get('password')?.errors && contactForm.get('password')?.touched" class="invalid-feedback">
+              <div *ngIf="contactForm.get('password')?.hasError('required')">La contraseña es obligatoria.</div>
+              <div *ngIf="contactForm.get('password')?.hasError('minlength')">Debe tener al menos 6 caracteres.</div>
+              <div *ngIf="contactForm.get('password')?.hasError('pattern')">
+                Debe contener al menos una mayúscula, una minúscula, un número y un caracter especial.
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje:</label>
+            <textarea id="message" class="form-control" formControlName="message"></textarea>
+            <div *ngIf="contactForm.get('message')?.errors && contactForm.get('message')?.touched" class="invalid-feedback">
+              <div *ngIf="contactForm.get('message')?.hasError('required')">El mensaje es obligatorio.</div>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-primary w-100" [disabled]="contactForm.invalid || isLoading">
+            {{ isLoading ? 'Enviando...' : 'Enviar' }}
+          </button>
+        </form>
+  
+        <!-- Mensajes de éxito y error -->
+        <div *ngIf="formSubmitted" class="alert alert-success mt-3">Tu mensaje se ha enviado correctamente.</div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+      </div>
+    </div>
+  </div>
+  

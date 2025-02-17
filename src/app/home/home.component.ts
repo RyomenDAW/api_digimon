@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { DigimonService } from '../digimon.service';
 import { HttpClient } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router'; // IMPORTANTE
 const BASE_URL = 'https://digi-api.com'; // URL base de la API
 
-interface Digimon {
-  name: string;
-  images: { href: string }[]; // Asumiendo que cada Digimon tiene una lista de imágenes
-}
+
 
 @Component({
   selector: 'app-home',
   standalone: true, // 🚀 IMPORTANTE en Angular 19
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [] // Si usas otros componentes, agrégales aquí
+  imports: [RouterModule] // 
 })
+
+
+
 export class HomeComponent {
+
+
   digimonId: number = 1; // ID por defecto
   digimonName: string = 'Agumon'; // Nombre por defecto
   digimonImage: string = ''; // URL de la imagen del Digimon
