@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import emailjs from '@emailjs/browser';
-import { CommonModule, NgIf, NgFor } from '@angular/common'; 
+import { CommonModule, NgIf, } from '@angular/common'; 
 
 @Component({
   selector: 'app-contacto',
   standalone: true,
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, NgIf, NgFor] // ✅ Asegúrate de incluir ReactiveFormsModule
+  imports: [CommonModule, ReactiveFormsModule, NgIf, ] // ✅ Asegúrate de incluir ReactiveFormsModule
 
 })
 export class ContactoComponent {

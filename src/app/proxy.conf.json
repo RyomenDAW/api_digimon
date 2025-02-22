@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://digi-api.com/api/v1",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

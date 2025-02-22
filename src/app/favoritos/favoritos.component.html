@@ -1,0 +1,57 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 border">
+    <div class="container" style="margin-bottom: 0px; border: 1px solid white; padding: 15px; border-radius: 10px;">
+      <!-- Logo de Digimon -->
+      <a class="navbar-brand ms-auto" href="#">
+        <img src="../../assets/veemon.png" alt="Logo Veemon" width="100" height="100">
+        Digimon API | 2º DAW
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2" href="#home">🏠 Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2" routerLink="/buscador">🔍 Digimones</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2"routerLink="/favoritos">⭐ Favoritos</a>
+        </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2" routerLink="/contacto">📩 Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary mx-2" href="#login">🔑 Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <h2>⭐ Digimons Favoritos</h2>
+
+  @if (favoritos.length === 0) {
+    <p>No hay Digimons en favoritos.</p>
+  }
+  
+  @for (digimon of favoritos; track digimon.id) {
+    <div class="card">
+      <img [src]="digimon.image" alt="{{ digimon.name }}" />
+      <h3>{{ digimon.name }}</h3>
+      <p>Nivel: {{ digimon.level }}</p>
+      <p>Tipo: {{ digimon.type }}</p>
+      <p>Atributo: {{ digimon.attribute }}</p>
+      <p>Fecha de Lanzamiento: {{ digimon.releaseDate }}</p>
+      <p>Habilidades: {{ digimon.skills.join(', ') }}</p>
+  
+      <!-- Botón para eliminar de favoritos -->
+      <button (click)="removeFromFavorites(digimon)">
+        ❌ Quitar de Favoritos
+      </button>
+    </div>
+  }
+  

@@ -1,0 +1,71 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 border">
+  <div class="container" style="margin-bottom: 0px; border: 1px solid white; padding: 15px; border-radius: 10px;">
+    <!-- Logo de Digimon -->
+    <a class="navbar-brand ms-auto" href="#">
+      <img src="../../assets/veemon.png" alt="Logo Veemon" width="100" height="100">
+      Digimon API | 2º DAW
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" href="#home">🏠 Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" routerLink="/buscador">🔍 Digimones</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" routerLink="/favoritos">⭐ Favoritos</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light mx-2" routerLink="/contacto">📩 Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary mx-2" href="#login">🔑 Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- CONTENEDOR PRINCIPAL DEL BUSCADOR -->
+<div class="container digimon-container">
+  <h2 class="title">Buscar Digimon</h2>
+  <div class="search-box">
+    <label for="digimonName" class="label">Nombre del Digimon: </label>
+    <input id="digimonName" type="text" (input)="filterDigimons($event)" placeholder="Escribe para buscar..."
+      class="input-field">
+  </div>
+  <button (click)="toggleSort()">
+    Ordenar {{ isAscending ? 'Z-A' : 'A-Z' }}
+  </button>
+</div>
+
+<!-- CONTENEDOR FLEXIBLE PARA MOSTRAR LAS CARTAS -->
+<div class="digimon-card-container">
+  @for (digimon of filteredDigimons; track digimon.id) {
+  <div class="digimon-card">
+    <div class="digimon-image">
+      <img [src]="digimon.image" alt="{{ digimon.name }}">
+    </div>
+    <div class="digimon-info">
+      <h3 class="digimon-title">{{ digimon.name }}</h3>
+      <p><strong>Nivel:</strong> {{ digimon.level }}</p>
+      <p><strong>Tipo:</strong> {{ digimon.type }}</p>
+      <p><strong>Atributo:</strong> {{ digimon.attribute }}</p>
+      <p><strong>Fecha de Lanzamiento:</strong> {{ digimon.releaseDate }}</p>
+      <p><strong>Habilidades:</strong> {{ digimon.skills.join(', ') }}</p>
+
+      <!-- Botón de Corazón -->
+      <button (click)="addToFavorites(digimon)">
+        ❤️ {{ isFavorite(digimon) ? 'Remove' : 'Add' }}
+      </button>
+    </div>
+  </div>
+  }
+</div>
