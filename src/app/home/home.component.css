@@ -14,12 +14,12 @@
   font-size: 16px; /* Ajusta el tamaño de los links */
   font-weight: 600;
   color: whitesmoke;
-  font-style:italic;
+  font-style: italic;
 }
 
-
-
-/* Contenedor Principal */
+/* ============================ */
+/* 🔹 CONTENEDOR PRINCIPAL */
+/* ============================ */
 .digimon-container {
   max-width: 800px;
   margin: 50px auto;
@@ -29,31 +29,35 @@
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
   border: 2px solid #ddd;
-  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
-
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Contenedor de la información */
+/* ============================ */
+/* 🔹 CONTENEDOR DE INFORMACIÓN */
+/* ============================ */
 .digimon-info {
   display: flex;
-  flex-direction: column; /* Organiza los datos en columna */
-  gap: 5px; /* Espaciado entre líneas */
+  flex-direction: column;
+  gap: 5px;
   font-size: 16px;
-  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
+  font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
 }
 
-/* Título */
+/* ============================ */
+/* 🔹 TÍTULO */
+/* ============================ */
 .title {
   margin-bottom: 20px;
   color: #333;
   font-size: 26px;
   font-weight: bold;
-  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente Orbitron */
-
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Input y Botón */
+/* ============================ */
+/* 🔹 INPUT Y BOTÓN */
+/* ============================ */
 .search-box {
   display: flex;
   align-items: center;
@@ -76,15 +80,14 @@
   font-size: 16px;
   transition: border-color 0.3s ease-in-out;
   margin-left: 10px;
-  border: 2px solid #007bff; /* Azul más sutil */
-  border-radius: 8px; /* Bordes más suaves */
+  border: 2px solid #007bff;
+  border-radius: 8px;
 }
 
 .input-field:focus {
   border-color: #0056b3;
 }
 
-/* Botón estilizado */
 .search-button {
   padding: 10px 15px;
   background: linear-gradient(to right, #007bff, #0056b3);
@@ -103,21 +106,79 @@
   transform: scale(1.08);
 }
 
-/* Caja de resultados */
+/* ============================ */
+/* 🔹 CAJA DE RESULTADOS (CENTRADA Y MEJORADA) */
+/* ============================ */
 .result-box {
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-  font-size: 18px;
-  margin-top: 30px;
   display: flex;
-  align-items: center; /* Alinear verticalmente */
-  gap: 20px; /* Espacio entre la imagen y la información */
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center;
+  max-width: 600px;
+  margin: 40px auto; /* Centra en la pantalla */
+  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 20px;
+  border: 3px solid #007bff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Habilidades */
+.result-box:hover {
+  transform: scale(1.02);
+}
+
+/* ============================ */
+/* 🔹 IMAGEN DEL DIGIMON */
+/* ============================ */
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.image-box img {
+  width: 250px;
+  height: auto;
+  border-radius: 15px;
+  border: 3px solid #007bff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-box img:hover {
+  transform: scale(1.05);
+}
+
+/* ============================ */
+/* 🔹 INFORMACIÓN DEL DIGIMON */
+/* ============================ */
+.digimon-info {
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  background: #e3eaf5;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.digimon-info p {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.digimon-info strong {
+  color: #007bff;
+}
+
+/* ============================ */
+/* 🔹 MEJORA EN LAS HABILIDADES */
+/* ============================ */
 .skills-box {
   margin-top: 15px;
 }
@@ -128,48 +189,30 @@
 }
 
 .skills-box li {
-  background: #e3eaf5;
+  background: #007bff;
+  color: white;
   margin: 5px 0;
-  padding: 8px;
+  padding: 10px;
   border-radius: 5px;
   text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Imagen */
-.image-box {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  flex-shrink: 0; /* Evita que la imagen se reduzca */
-
-}
-
-.image-box img {
-  width: 200px; /* Tamaño fijo de la imagen */
-  height: auto;
-  border-radius: 12px;
-  border: 3px solid #007bff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.image-box img:hover {
-  transform: scale(1.05);
-}
-
-
-/* ============================================== */
-
+/* ============================ */
+/* 🔹 FEATURED CONTAINER */
+/* ============================ */
 .featured-container {
   text-align: center;
   margin-top: 30px;
-  /* border: 2px solid aqua; */
 }
 
 .featured-title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 15px;
-  font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
-
+  font-family: 'Orbitron', sans-serif;
 }
 
 .featured-grid {
@@ -204,11 +247,11 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
-
+  font-family: 'Orbitron', sans-serif;
 }
 
-
+/* ============================ */
+/* 🔹 FEATURED BUTTONS */
 /* ============================ */
 .featured-buttons {
   display: flex;

@@ -8,7 +8,7 @@ import { CommonModule, NgIf, } from '@angular/common';
   standalone: true,
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, NgIf, ] // ✅ Asegúrate de incluir ReactiveFormsModule
+  imports: [CommonModule, ReactiveFormsModule, NgIf, ] //incluir ReactiveFormsModule
 
 })
 export class ContactoComponent {
@@ -39,10 +39,10 @@ export class ContactoComponent {
     const formData = this.contactForm.value;
 
     emailjs.send(
-      'service_ztvsnfl',  // Reemplaza con tu Service ID de EmailJS
-      'template_lodtbn7', // Reemplaza con tu Template ID de EmailJS
+      'service_ztvsnfl',  //  Service ID de EmailJS
+      'template_lodtbn7', // Template ID de EmailJS
       formData,
-      'dh1iIIVBBVIZ-TdYJ'   // Reemplaza con tu Public Key de EmailJS
+      'dh1iIIVBBVIZ-TdYJ'   // Public Key de EmailJS
     ).then(
       () => {
         this.formSubmitted = true;
@@ -64,5 +64,11 @@ export class ContactoComponent {
         this.markFormGroupTouched(control);
       }
     });
+  }
+
+  showLogin = false;
+
+  toggleLogin() {
+    this.showLogin = !this.showLogin;
   }
 }

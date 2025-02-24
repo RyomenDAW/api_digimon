@@ -1,0 +1,20 @@
+<div class="login-container">
+    <h2>🔑 Iniciar Sesión</h2>
+  
+    <input type="email" [(ngModel)]="email" placeholder="Correo electrónico">
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña">
+  
+    <button (click)="register()">Registrarse</button>
+    <button (click)="login()">Iniciar Sesión</button>
+    <button (click)="logout()">Cerrar Sesión</button>
+    <button (click)="getUser()">Ver Usuario</button>
+  
+    <div *ngIf="user">
+      <p>✅ Sesión activa del usuario: {{ user.email }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage">
+      <p style="color: red;">❌ {{ errorMessage }}</p>
+    </div>
+  </div>
+  

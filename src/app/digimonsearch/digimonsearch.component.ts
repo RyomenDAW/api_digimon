@@ -1,17 +1,17 @@
 // ==========================================================
-// ✅ IMPORTACIONES NECESARIAS
+//  IMPORTACIONES NECESARIAS
 // ==========================================================
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 // ==========================================================
-// ✅ URL BASE DE LA API DE DIGIMON
+// URL BASE DE LA API DE DIGIMON
 // ==========================================================
 const BASE_URL = "https://digi-api.com/api/v1/digimon";
 
 // ==========================================================
-// ✅ INTERFAZ PARA TIPAR LOS DIGIMONS CORRECTAMENTE
+//  INTERFAZ PARA TIPAR LOS DIGIMONS CORRECTAMENTE
 // ==========================================================
 interface Digimon {
   id: number;
@@ -25,7 +25,7 @@ interface Digimon {
 }
 
 // ==========================================================
-// ✅ COMPONENTE PRINCIPAL
+//  COMPONENTE PRINCIPAL
 // ==========================================================
 @Component({
   selector: 'app-digimonsearch',
@@ -37,7 +37,7 @@ interface Digimon {
 export class DigimonsearchComponent {
   
   // ==========================================================
-  // ✅ LISTA DE DIGIMONS PARA MOSTRAR EN CARTAS
+  //  LISTA DE DIGIMONS PARA MOSTRAR EN CARTAS
   // ==========================================================
   allDigimons: Digimon[] = []; // 🔹 ALMACENA TODOS LOS DIGIMONS CARGADOS
   filteredDigimons: Digimon[] = []; // 🔹 FILTRA SEGÚN EL BUSCADOR
@@ -47,14 +47,14 @@ export class DigimonsearchComponent {
   isAscending: boolean = true; // 🔄 Estado para ordenar (A-Z o Z-A)
 
   // ==========================================================
-  // ✅ CONSTRUCTOR: INYECTAMOS HTTP CLIENT Y CARGAMOS DIGIMONS
+  //  CONSTRUCTOR: INYECTAMOS HTTP CLIENT Y CARGAMOS DIGIMONS
   // ==========================================================
   constructor(private http: HttpClient) {
     this.loadRandomDigimons(); // 🔹 CARGA INICIAL DE DIGIMONS
   }
 
   // ==========================================================
-  // ✅ CARGAR 1461 DIGIMONS CON DETALLES
+  //  CARGAR 1461 DIGIMONS CON DETALLES
   // ==========================================================
   loadRandomDigimons() {
     this.allDigimons = []; // 🔄 LIMPIAMOS ANTES DE CARGAR
@@ -72,7 +72,7 @@ export class DigimonsearchComponent {
 
       response.content.forEach((basicDigimon: any) => {
         this.http.get<any>(`${BASE_URL}/${basicDigimon.name}`).subscribe(fullResponse => {
-          // ✅ Guardamos el Digimon con todos sus atributos
+          //  Guardamos el Digimon con todos sus atributos
           this.allDigimons.push({
             id: fullResponse.id ?? Math.random(),
             name: fullResponse.name ?? 'Desconocido',
@@ -99,7 +99,7 @@ export class DigimonsearchComponent {
   }
 
   // ==========================================================
-  // ✅ FILTRAR DIGIMONS SEGÚN EL INPUT DEL BUSCADOR
+  //  FILTRAR DIGIMONS SEGÚN EL INPUT DEL BUSCADOR
   // ==========================================================
   filterDigimons(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase().trim();
@@ -114,7 +114,7 @@ export class DigimonsearchComponent {
   }
 
   // ==========================================================
-  // ✅ BUSCAR UN DIGIMON POR NOMBRE
+  //  BUSCAR UN DIGIMON POR NOMBRE
   // ==========================================================
   getDigimon(digimonNameInput: HTMLInputElement) {
     let name = digimonNameInput.value.trim().toLowerCase();
@@ -150,14 +150,14 @@ export class DigimonsearchComponent {
   }
 
   // ==========================================================
-  // ✅ RESETEAR CAMPOS SI NO HAY RESULTADOS
+  //  RESETEAR CAMPOS SI NO HAY RESULTADOS
   // ==========================================================
   resetFields() {
     this.filteredDigimons = [];
   }
 
   // ==========================================================
-  // ✅ TOGGLE PARA ORDENAR A-Z / Z-A
+  //  TOGGLE PARA ORDENAR A-Z / Z-A alfanumerico vaya 
   // ==========================================================
   toggleSort() {
     this.isAscending = !this.isAscending; // 🔄 Alternamos entre A-Z y Z-A
@@ -170,7 +170,7 @@ export class DigimonsearchComponent {
   }
 
     // ==========================================================
-  // ✅ AGREGAR O QUITAR DE FAVORITOS
+  //  AGREGAR O QUITAR DE FAVORITOS
   // ==========================================================
   addToFavorites(digimon: Digimon) {
     let favoritos: Digimon[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
@@ -185,9 +185,15 @@ export class DigimonsearchComponent {
     localStorage.setItem('favoritos', JSON.stringify(favoritos)); 
   }
 
-  // ✅ VERIFICAR SI UN DIGIMON ESTÁ EN FAVORITOS
+  //  VERIFICAR SI UN DIGIMON ESTÁ EN FAVORITOS
   isFavorite(digimon: Digimon): boolean {
     let favoritos: Digimon[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
     return favoritos.some(d => d.id === digimon.id);
+  }
+
+  showLogin = false;
+
+  toggleLogin() {
+    this.showLogin = !this.showLogin;
   }
 }

@@ -1,7 +1,7 @@
 .error-message {
-    color: red; /* Set the text color to red */
-    font-size: 14px; /* Optional: Adjust the font size */
-    margin-top: 5px; /* Optional: Add some space between input and error message */
+    color: red; 
+    font-size: 14px; 
+    margin-top: 5px;
   }
   .invalid-feedback
   {
@@ -13,8 +13,8 @@
   }
 
   .navbar {
-    font-family: 'Orbitron', sans-serif; /* Aplica Orbitron a toda la navbar */
-    text-transform: uppercase; /* Opcional: convierte texto en mayúsculas */
+    font-family: 'Orbitron', sans-serif; 
+    text-transform: uppercase; 
     font-weight: 700; /* Hace que el texto sea más grueso */
     letter-spacing: 1px;
   }

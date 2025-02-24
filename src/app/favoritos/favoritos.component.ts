@@ -20,4 +20,10 @@ export class FavoritosComponent {
     this.favoritos = this.favoritos.filter(d => d.id !== digimon.id);
     localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
   }
+
+  showLogin = false;
+
+  toggleLogin() {
+    this.showLogin = !this.showLogin;
+  }
 }

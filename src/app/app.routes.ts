@@ -6,6 +6,7 @@ import { PoliticaPrivacidadComponent } from './contacto/politica-privacidad/poli
 import { TerminosCondicionesComponent } from './contacto/terminos-condiciones/terminos-condiciones.component';
 import { CookiesComponent } from './contacto/cookies/cookies.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'contacto', component: ContactoComponent },
@@ -14,4 +15,6 @@ export const routes: Routes = [
     { path: 'terminos-condiciones', component: TerminosCondicionesComponent },
     { path: 'cookies', component: CookiesComponent },
     { path: 'favoritos', component: FavoritosComponent },
+
+
 ];

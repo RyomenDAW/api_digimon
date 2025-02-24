@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have the 'angApp_v19' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angApp_v19');
+    expect(app.title).toEqual('angApp_v19'); //aqui title dice que da error pero es mentira luego, mi title no es angAppv19 aun asi, pero no afecta
   });
 
   it('should render title', () => {

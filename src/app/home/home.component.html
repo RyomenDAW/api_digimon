@@ -25,18 +25,19 @@
           <a class="btn btn-outline-light mx-2" routerLink="/contacto">📩 Contacto</a>  
         </li>
         <li class="nav-item">
-          <a class="btn btn-primary mx-2" href="#login">🔑 Login</a>
-        </li>
+          <a class="btn btn-primary mx-2" href="#login" (click)="toggleLogin()">🔑 Login</a>
+        </li>        
       </ul>
     </div>
   </div>
 </nav>
 
+<app-login *ngIf="showLogin"></app-login>
 
 
 
 <div class="featured-container">
-  <h2 class="featured-title">Digimones Favoritos</h2>
+  <h2 class="featured-title">Digimones Roulette</h2>
 
 
     <!-- Botones Shuffle y Reset -->

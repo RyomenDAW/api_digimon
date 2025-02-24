@@ -2,15 +2,25 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router'; // IMPORTANTE
 const BASE_URL = 'https://digi-api.com/api/v1/digimon'; // URL base de la API
+import { LoginComponent } from '../components/login/login.component'; // IMPORTAMOS LoginComponent para login
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  standalone: true, // 🚀 IMPORTANTE en Angular 19
+  standalone: true, 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [RouterModule] // 
+  imports: [RouterModule, LoginComponent, CommonModule] // 
 })
 export class HomeComponent {
+
+
+  showLogin = false;
+
+  toggleLogin() {
+    this.showLogin = !this.showLogin;
+  }
+
   digimonName: string = 'Agumon'; // Nombre por defecto
   digimonImage: string = ''; // URL de la imagen del Digimon
   digimonLevel: string = 'Desconocido';
@@ -27,7 +37,7 @@ export class HomeComponent {
     this.loadFeaturedDigimons(this.originalDigimonNames);
   }
 
-  // ✅ CARGAR DIGIMONES DESTACADOS POR NOMBRE (mínimos cambios)
+  // CARGAR DIGIMONES DESTACADOS POR NOMBRE (mínimos cambios)
   loadFeaturedDigimons(names: string[]) {
     this.featuredDigimons = []; // Limpiar antes de cargar
     names.forEach(name => {
@@ -45,7 +55,7 @@ export class HomeComponent {
 
 // ✅ SHUFFLE DIGIMONES - Ahora selecciona Digimon aleatorios desde la API
 shuffleDigimons() {
-  const randomIds = Array.from({ length: 4 }, () => Math.floor(Math.random() * 300) + 1); // 🔥 Genera 200 IDs aleatorios
+  const randomIds = Array.from({ length: 4 }, () => Math.floor(Math.random() * 300) + 1); //  Genera 300 IDs aleatorios, no los 1461
   this.featuredDigimons = []; // 🔄 Limpia la lista antes de actualizar
 
   randomIds.forEach(id => {
